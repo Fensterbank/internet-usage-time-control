@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :password_digest
-      t.string :net_allowed
+      t.boolean :net_allowed
 
       t.timestamps null: false
     end

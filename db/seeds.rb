@@ -6,4 +6,10 @@
 admin = User.new
 admin.password = 'admin'
 admin.name = 'admin'
+admin.net_allowed = true
 admin.save!
+
+# Setting
+setting = Setting.new
+setting.net_allowed = true
+setting.save!

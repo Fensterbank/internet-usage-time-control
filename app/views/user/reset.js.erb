@@ -1,0 +1,7 @@
+var row = $('.btn-group[data-user-id="<%= @user.id %>"]').parent().parent();
+row.children()[2].innerHTML = '<%= "#{'%.2f' % [remaining_percentage(@user.today_used_time)]}%" %>';
+row.children()[3].innerHTML = '<%= "(#{seconds_to_minutes(remaining_quota(@user.today_used_time))})" %>';
+
+var progressBar = $(row.children()[1].children[0].children[0]);
+progressBar.attr('class', 'progress-bar <%= progress_bar_class(remaining_percentage(@user.today_used_time)) %> progress-bar-striped active');
+progressBar.attr('style', '<%= "width: #{'%.2f' % [remaining_percentage(@user.today_used_time)]}%" %>');

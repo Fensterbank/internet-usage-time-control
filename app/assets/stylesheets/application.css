@@ -15,5 +15,21 @@
 
 footer {
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    background-color: #fff;
+}
+
+.bolden {
+    font-weight: bold;
+}
+
+.row h1 {
+    margin-bottom: 40px;
+}
+
+.sidebar-nav h3 {
+    margin-top: 0;
 }

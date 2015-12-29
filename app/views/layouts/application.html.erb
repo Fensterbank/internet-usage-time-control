@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "InternetUsageTimeControl" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Internetkontrollcenter" %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -46,28 +46,43 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">Internetkontrollcenter</a>
+        <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Abmelden', logout_path %></li>
+            </ul>
+        <% end %>
       </div>
     </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-10">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
+        <% if user_signed_in? %>
+        <div class="col-lg-2">
           <div class="well sidebar-nav">
-            <h3>Internetstatus</h3>
-
+            <h3>Aktuell</h3>
+            <% if @global_net_allowed %>
+                <%= link_to raw('<i class="fa fa-unlock fa-2x text-success"></i>'), toggle_global_netuse_path, class: 'btn btn-default', method: :post, remote: true %>
+            <% else %>
+              <%= link_to raw('<i class="fa fa-lock fa-2x text-danger"></i>'), toggle_global_netuse_path, class: 'btn btn-default', method: :post, remote: true %>
+            <% end %>
+            <div style="margin-top:20px;">
+              <b>Online:</b><br>
+              <%= @current_online_user.nil? ? 'Niemand' : @current_online_user %>
+            </div>
           </div><!--/.well -->
         </div><!--/span-->
+        <% end %>
       </div><!--/row-->
 
       <footer>
-        <p>Clipboard 1.0. Copyright © 2015
+        <p>Internet Usage Time Control. Copyright © 2015
         <a href="http://bolvin.de" target="_blank">Frédéric Bolvin</a>.</p>
 
-        <p>This software is released under the GPLv3. Full source code is available on
+        <p>This software is released under the MIT License. Full source code is available on
         <a href="https://github.com/Fensterbank/internet-usage-time-control" target="_blank">github</a>.</p>
       </footer>
 

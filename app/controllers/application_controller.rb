@@ -2,6 +2,16 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :read_settings
+
+  def read_settings
+    @global_net_allowed = Setting.first.net_allowed
+    if Ping.any?
+      if Time.zone.now - Ping.last.created_at < 70
+        @current_online_user = Ping.last.user.name
+      end
+    end
+  end
 
   private
   def current_user

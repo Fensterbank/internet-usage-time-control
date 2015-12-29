@@ -26,8 +26,6 @@ class SessionController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    session['slideshow_downloads'] = nil
-    session['slideshow_generals'] = nil
-    redirect_to index_path
+    redirect_to root_path
   end
 end
