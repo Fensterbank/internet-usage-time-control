@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'user/toggle_netuse/:id' => 'user#toggle_netuse', as: 'toggle_user_netuse'
   post 'user/reset/:id' => 'user#reset', as: 'reset_user'
   post 'user/delete/:id' => 'user#delete', as: 'delete_user'
+  get 'default.aspx' => 'user#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
