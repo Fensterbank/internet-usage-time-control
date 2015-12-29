@@ -22,7 +22,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'twitter-bootstrap-rails'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+group :production do
+  gem 'unicorn'
+end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
